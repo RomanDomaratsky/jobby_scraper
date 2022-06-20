@@ -1,6 +1,8 @@
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 import w3lib.html
+from scrapy.crawler import CrawlerProcess
+from datetime import datetime
 
 
 class JobSpider(CrawlSpider):
@@ -10,9 +12,7 @@ class JobSpider(CrawlSpider):
     ]
 
     rules = (
-        Rule(LinkExtractor(allow='job/',
-
-                           deny_domains='https://dejobs.org/jobs/'),
+        Rule(LinkExtractor(allow='job/', deny_domains='https://dejobs.org/jobs/'),
              callback='job_parser'),
     )
 
@@ -31,3 +31,10 @@ class JobSpider(CrawlSpider):
             }
 
 
+process = CrawlerProcess(settings={
+    'FEED_URI': 'jobs%(time)s.json',
+    'FEED_FORMAT': 'json',
+})
+
+process.crawl(JobSpider)
+process.start()
