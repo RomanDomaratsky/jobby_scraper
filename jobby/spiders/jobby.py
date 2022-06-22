@@ -14,7 +14,7 @@ class JobSpider(CrawlSpider):
              callback='job_parser'),
     )
 
-    def __init__(self, pages='', *args, **kwargs):
+    def __init__(self, pages='3', *args, **kwargs):
         super(JobSpider, self).__init__(*args, **kwargs)
         self.start_urls = [f'https://dejobs.org/jobs/#{pages}']
 
@@ -34,12 +34,12 @@ class JobSpider(CrawlSpider):
         yield item
 
 
-process = CrawlerProcess(settings={
-    'FEED_URI': 'jobs%(time)s.json',
-    'FEED_FORMAT': 'json',
-})
+#process = CrawlerProcess(settings={
+    #'FEED_URI': 'jobs%(time)s.json',
+    #'FEED_FORMAT': 'json',
+#})
 
-process.crawl(JobSpider)
-if "twisted.internet.reactor" in sys.modules:
-    del sys.modules["twisted.internet.reactor"]
-process.start()
+#process.crawl(JobSpider)
+#if "twisted.internet.reactor" in sys.modules:
+    #del sys.modules["twisted.internet.reactor"]
+#process.start()
