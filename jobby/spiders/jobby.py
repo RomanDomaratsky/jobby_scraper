@@ -34,12 +34,12 @@ class JobSpider(CrawlSpider):
         yield item
 
 
-#process = CrawlerProcess(settings={
-    #'FEED_URI': 'jobs%(time)s.json',
-    #'FEED_FORMAT': 'json',
-#})
+process = CrawlerProcess(settings={
+    'FEED_URI': 'jobs%(time)s.json',
+    'FEED_FORMAT': 'json',
+})
 
-#process.crawl(JobSpider)
-#if "twisted.internet.reactor" in sys.modules:
-    #del sys.modules["twisted.internet.reactor"]
-#process.start()
+process.crawl(JobSpider)
+if "twisted.internet.reactor" in sys.modules:
+    del sys.modules["twisted.internet.reactor"]
+process.start()
