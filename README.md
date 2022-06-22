@@ -20,9 +20,18 @@ You can also set number of pages by this command:
 ```
 scrapy crawl job -a pages=<number_of_pages>
 ```
----
 All the data will be stored into database and json file.
 
+---
+DB documentation
+---
+This data base stores information about jobs which was craped by script.
+
+It has 8 columns: Job title, job link, organization, city, region, country, date when job was posted and the description.
+
+DB doesn`t have any relationships
+
+---
 # Contact
 Please feel free to contact us with any questions, suggestions or comments:
 
